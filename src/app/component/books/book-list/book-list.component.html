@@ -1,0 +1,48 @@
+<div class="max-w-6xl mx-auto p-6">
+    <!-- Titre principal -->
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">
+      Bibliothèque
+    </h1>
+  
+    <!-- Barre de recherche -->
+    <div class="flex justify-center mb-6">
+      <input
+        type="text"
+        placeholder="Rechercher un auteur ou une œuvre..."
+        class="w-full max-w-md px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        (input)="filterBooks($event)"
+      />
+    </div>
+  
+    <!-- Liste des livres -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div
+        class="bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow duration-300"
+        *ngFor="let book of filteredBooks"
+        (click)="viewDetails(book)"
+      >
+        <h3 class="text-xl font-semibold text-gray-700">{{ book.name }}</h3>
+        <p class="text-gray-600"><strong>Nationalité :</strong> {{ book.nationality }}</p>
+        <p class="text-gray-600">
+          <strong>Dates :</strong> {{ book.birthYear }} - {{ book.deathYear }}
+        </p>
+        
+      </div>
+    </div>
+  
+    <!-- Volet latéral pour les détails -->
+    <div
+      class="fixed top-0 right-0 h-full w-80 bg-white shadow-lg border-l border-gray-200 p-6 overflow-y-auto transform transition-transform duration-300"
+      [class.translate-x-full]="!selectedBook"
+    >
+      <button
+        class="text-red-500 font-bold mb-4 hover:underline"
+        (click)="closeDetails()"
+      >
+        Fermer
+      </button>
+     <app-book-detail [selectedBook]="selectedBook" [getListBooks]="getlistBooks"></app-book-detail>
+    </div>
+    <app-add-book [getListBooks]="getlistBooks" [onSubmit]="onSubmit"></app-add-book>
+  </div>
+  

@@ -1,0 +1,26 @@
+ <h2 class="text-2xl font-bold mb-4">
+        Œuvres de {{ selectedBook?.name }}
+      </h2>
+      <ul class="space-y-4">
+        <li *ngFor="let work of selectedBook?.works, let i = index">
+          <h4 class="text-lg font-semibold text-gray-700">
+            {{ work.title }} ({{ work.publicationYear }})
+          </h4>
+          <p class="text-sm text-gray-600"><strong>Genre :</strong> {{ work.genre }}</p>
+          <p class="text-sm text-gray-600">{{ work.summary }}</p>
+          <div class="mt-4 flex space-x-2">
+            <button
+              class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+              
+            >
+              Modifier
+            </button>
+            <button
+              class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+              (click)="deleteWork(work.title); $event.stopPropagation()"
+            >
+              Supprimer
+            </button>
+          </div>
+        </li>
+      </ul>

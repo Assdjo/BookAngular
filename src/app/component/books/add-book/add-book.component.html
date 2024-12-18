@@ -1,0 +1,136 @@
+<div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-6 text-gray-700">Ajouter un Auteur et ses Œuvres</h2>
+    <form (ngSubmit)="onSubmit(book)">
+      <!-- Informations sur l'Auteur -->
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-2" for="name">Nom de l'Auteur</label>
+        <input
+          id="name"
+          [(ngModel)]="book.name"
+          name="name"
+          type="text"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Entrez le nom de l'auteur"
+          required
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-2" for="birthYear">Année de Naissance</label>
+        <input
+          id="birthYear"
+          [(ngModel)]="book.birthYear"
+          name="birthYear"
+          type="number"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Entrez l'année de naissance"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-2" for="deathYear">Année de Décès</label>
+        <input
+          id="deathYear"
+          [(ngModel)]="book.deathYear"
+          name="deathYear"
+          type="number"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Entrez l'année de décès (facultatif)"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-2" for="nationality">Nationalité</label>
+        <input
+          id="nationality"
+          [(ngModel)]="book.nationality"
+          name="nationality"
+          type="text"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Entrez la nationalité de l'auteur"
+        />
+      </div>
+  
+      <!-- Œuvres (Works) -->
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-2" for="works">Œuvres</label>
+        <div *ngFor="let work of book.works; let i = index" class="mb-4">
+          <div class="mb-2 flex justify-between items-center">
+            <h3 class="text-lg font-medium text-gray-600">Œuvre {{ i + 1 }}</h3>
+            <button
+              type="button"
+              (click)="removeWork(i)"
+              class="text-red-600 hover:text-red-800 text-sm"
+            >
+              Supprimer
+            </button>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-gray-700 font-medium mb-2" for="title">Titre</label>
+              <input
+                id="title"
+                [(ngModel)]="work.title"
+                name="title{{ i }}"
+                type="text"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Titre de l'œuvre"
+                required
+              />
+            </div>
+            <div>
+              <label class="block text-gray-700 font-medium mb-2" for="publicationYear"
+                >Année de Publication</label
+              >
+              <input
+                id="publicationYear"
+                [(ngModel)]="work.publicationYear"
+                name="publicationYear{{ i }}"
+                type="number"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Année de publication"
+                required
+              />
+            </div>
+            <div>
+              <label class="block text-gray-700 font-medium mb-2" for="genre">Genre</label>
+              <input
+                id="genre"
+                [(ngModel)]="work.genre"
+                name="genre{{ i }}"
+                type="text"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Genre de l'œuvre"
+              />
+            </div>
+            <div>
+              <label class="block text-gray-700 font-medium mb-2" for="summary">Résumé</label>
+              <textarea
+                id="summary"
+                [(ngModel)]="work.summary"
+                name="summary{{ i }}"
+                rows="2"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Résumé de l'œuvre"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+        <button
+          type="button"
+          (click)="addWork()"
+          class="mt-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg"
+        >
+          Ajouter une Œuvre
+        </button>
+      </div>
+  
+      <!-- Bouton Soumettre -->
+      <div class="mt-6">
+        <button
+          type="submit"
+          class="w-full bg-green-500 hover:bg-green-600 text-white font-medium px-4 py-2 rounded-lg"
+        >
+          Enregistrer l'Auteur
+        </button>
+      </div>
+    </form>
+  </div>
+  
