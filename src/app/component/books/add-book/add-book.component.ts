@@ -1,4 +1,4 @@
-import { Component, EventEmitter, input, Input, Output } from '@angular/core';
+import { Component, EventEmitter, input, Input, OnInit, Output } from '@angular/core';
 import { BooksList } from '../../../data/BookList';
 import { Books } from '../../../models/books';
 import { BookService } from '../../../services/book.service';
@@ -10,7 +10,7 @@ import { BookService } from '../../../services/book.service';
   templateUrl: './add-book.component.html',
   styleUrl: './add-book.component.css'
 })
-export class AddBookComponent {
+export class AddBookComponent implements OnInit{
   book:Books = {
     id:0,
     name: '',
@@ -30,6 +30,11 @@ export class AddBookComponent {
   @Output() sendToList:EventEmitter<Books> = new EventEmitter<Books>();
   @Input() onSubmit! : (book:Books)=>void;
   
+  ngOnInit(): void {
+  this.getListBooks()
+    
+  }
+
   constructor(private BookService:BookService){}
   addWork() {
     this.book.works.push({

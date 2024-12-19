@@ -1,0 +1,48 @@
+<div *ngIf="author" class="p-4 bg-gray-100 rounded shadow-md">
+    <h1 class="text-2xl font-bold text-gray-800">{{ author.name }}</h1>
+    <p class="text-gray-600">
+      <span class="font-medium">Année de naissance :</span> {{ author.birthYear }}
+    </p>
+    <p class="text-gray-600">
+      <span class="font-medium">Année de décès :</span> {{ author.deathYear }}
+    </p>
+    <p class="text-gray-600">
+      <span class="font-medium">Nationalité :</span> 
+      <span *ngIf="isArray(author.nationality); else singleNation">
+        {{ author.nationality }}
+      </span>
+      <ng-template #singleNation>{{ author.nationality }}</ng-template>
+    </p>
+  
+    <h2 class="mt-6 text-xl font-semibold text-gray-800">Œuvres :</h2>
+    <ul class="space-y-4 mt-4">
+      <li *ngFor="let work of author.works" class="bg-white p-4 rounded shadow">
+        <h3 class="text-lg font-semibold">{{ work.title }}</h3>
+        <p class="text-sm text-gray-600">
+          <span class="font-medium">Année de publication :</span> {{ work.publicationYear }}
+        </p>
+        <p class="text-sm text-gray-600">
+          <span class="font-medium">Genre :</span> 
+          <span *ngIf="isArray(work.genre); else singleGenre">
+            {{ work.genre }}
+          </span>
+          <ng-template #singleGenre>{{ work.genre }}</ng-template>
+        </p>
+        <p class="text-sm text-gray-600">
+          <span class="font-medium">Résumé :</span> {{ work.summary }}
+        </p>
+      </li>
+    </ul>
+  </div>
+  
+  <div *ngIf="!author" class="p-4 bg-red-100 text-red-600 rounded">
+    Auteur introuvable.
+  </div>
+  <button
+  routerLink="/"
+  class="mt-4 px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-500"
+>
+  Retour à la liste
+</button>
+
+  

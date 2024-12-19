@@ -17,16 +17,16 @@ selectedBook: Books | null = null;
 
 constructor(private BookService: BookService) {}
 
-getlistBooks() {
-  this.Bookslists = this.BookService.getBooks()
-  this.filteredBooks = this.Bookslists;
-}
+
 
  ngOnInit(): void {
   this.getlistBooks()
 }
 
-
+getlistBooks() {
+  this.Bookslists = this.BookService.getBooks()
+  this.filteredBooks = this.Bookslists;
+}
 
 filterBooks(event: Event): void {
   const query = (event.target as HTMLInputElement).value.toLowerCase();
@@ -54,7 +54,5 @@ editBook(book: Books, id:number): void {
 onSubmit(book:Books) {
   console.log('Auteur et Œuvres enregistrés :', book);
  this.BookService.addBook(book)
- this.getlistBooks()
 }
-
 }

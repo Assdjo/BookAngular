@@ -1,0 +1,16 @@
+<div *ngIf="work; else noWork" class="work-details bg-gray-100 p-6 rounded-lg shadow-md">
+  <h2 class="text-2xl font-bold text-indigo-600">{{ work.title }}</h2>
+  <p class="text-sm text-gray-500">Année de publication : {{ work.publicationYear }}</p>
+  <p class="text-sm text-gray-500">Genre : 
+    <span *ngIf="isArray(work.genre); else singleGenre">
+      {{ work.genre.join(', ') }}
+    </span>
+    <ng-template #singleGenre>{{ work.genre }}</ng-template>
+  </p>
+  <p class="mt-4 text-gray-800">{{ work.summary }}</p>
+</div>
+
+<ng-template #noWork>
+  <p class="text-red-600">Aucune œuvre trouvée avec cet identifiant.</p>
+</ng-template>
+

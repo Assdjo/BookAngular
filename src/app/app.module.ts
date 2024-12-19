@@ -11,6 +11,12 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './component/auth/login/login.component';
 import { RegisterComponent } from './component/auth/register/register.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
+import { FifaComponent } from './component/game/fifa/fifa.component';
+import { GameComponent } from './component/game/game.component';
+import { NavComponent } from './component/layouts/nav/nav.component';
+import { ShowComponent } from './component/books/show/show.component';
+import { HeaderComponent } from './component/layouts/header/header.component';
+import { ShowWorkComponent } from './component/books/show-work/show-work.component';
 
 
 
@@ -24,6 +30,12 @@ import { NotFoundComponent } from './component/not-found/not-found.component';
     LoginComponent,
     RegisterComponent,
     NotFoundComponent,
+    FifaComponent,
+    GameComponent,
+    NavComponent,
+    ShowComponent,
+    HeaderComponent,
+    ShowWorkComponent,
   ],
   imports: [
     BrowserModule,

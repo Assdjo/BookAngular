@@ -20,11 +20,17 @@ export class BookService {
 
   // Ajouter un nouveau livre
   addBook(newBook: Books): void {
+    const newBookCopy = {
+      ...newBook,
+      works: newBook.works.map(work => ({
+        ...work
+      }))
+    };
     const newId = this.books.length > 0 ? Math.max(...this.books.map(b => b.id)) + 1 : 1;
     newBook.id = newId;
-    this.books.push(newBook);
+    this.books.push(newBookCopy);
     this.getBooks()
-    console.log(`Livre ajouté :`, newBook);
+    console.log(`Livre ajouté :`, newBookCopy);
     console.log(`Livre ajouté :`, this.books);
   }
 
@@ -49,7 +55,7 @@ export class BookService {
       console.error(`Livre avec ID ${id} introuvable.`);
     }
   }
-  
+
   deleteWork(title: string): void {
     const initialLength = this.books.length;
     this.books = this.books.filter(book => book.works.filter((work)=>work.title !== title));

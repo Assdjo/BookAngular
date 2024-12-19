@@ -9,6 +9,12 @@
           <p class="text-sm text-gray-600"><strong>Genre :</strong> {{ work.genre }}</p>
           <p class="text-sm text-gray-600">{{ work.summary }}</p>
           <div class="mt-4 flex space-x-2">
+            <a
+        [routerLink]="['/work', work.title]"
+        class="text-indigo-600 hover:underline"
+      >
+        {{ work.title }}
+      </a>
             <button
               class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
               
