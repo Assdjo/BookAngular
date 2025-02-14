@@ -2,6 +2,13 @@
     <a routerLink="/"  [routerLinkActive]="['font-bold', 'text-yellow-400', 'border-b-2', 'border-white']"class="text-white  px-4 py-2 hover:text-[#F59E0B] hover:border-b-2 hover:border-[#F59E0B] uppercase">Voir tâches</a>
 
     <a routerLink="/game" [routerLinkActive]="['font-bold', 'text-yellow-400', 'border-b-2', 'border-white']" class="text-white  px-4 py-2  hover:text-[#F59E0B] hover:border-b-2 hover:border-[#F59E0B] uppercase">Jeux</a>
-    <a routerLink="/login" [routerLinkActive]="['font-bold', 'text-yellow-400', 'border-b-2', 'border-white']" class="text-white  px-4 py-2  hover:text-[#F59E0B] hover:border-b-2 hover:border-[#F59E0B] uppercase">Connexion</a>
-    <a routerLink="/register" [routerLinkActive]="['font-bold', 'text-yellow-400', 'border-b-2', 'border-white']" class="text-white  px-4 py-2  hover:text-[#F59E0B] hover:border-b-2 hover:border-[#F59E0B] uppercase">Inscription</a>
+    <div *ngIf="login(); else notLoggedIn">
+        <button class="text-white  px-4 py-2  hover:text-[#F59E0B] hover:border-b-2 hover:border-[#F59E0B] uppercase" type="submit" (click)="logout()">Deconnexion</button>
+      </div>
+      
+      <ng-template #notLoggedIn>
+        <a routerLink="/login" [routerLinkActive]="['font-bold', 'text-yellow-400', 'border-b-2', 'border-white']" class="text-white  px-4 py-2  hover:text-[#F59E0B] hover:border-b-2 hover:border-[#F59E0B] uppercase">Connexion</a>
+        <a routerLink="/register" [routerLinkActive]="['font-bold', 'text-yellow-400', 'border-b-2', 'border-white']" class="text-white  px-4 py-2  hover:text-[#F59E0B] hover:border-b-2 hover:border-[#F59E0B] uppercase">Inscription</a>
+      </ng-template>
+ 
 </div>

@@ -8,11 +8,13 @@ import { GameComponent } from "./component/game/game.component";
 import { FifaComponent } from "./component/game/fifa/fifa.component";
 import { ShowComponent } from "./component/books/show/show.component";
 import { ShowWorkComponent } from "./component/books/show-work/show-work.component";
+import { authGuard } from "./guards/auth.guard";
 
 const routes :Routes = [
     {
         path:"",
-        component: BookListComponent
+        component: BookListComponent,
+        canActivate: [authGuard]
     },
     {
         path:"add-book",

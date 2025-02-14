@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Books } from '../../../models/books';
 import { ActivatedRoute } from '@angular/router';
-import { BooksList } from '../../../data/BookList';
+import { BookService } from '../../../services/book.service';
 
 @Component({
   selector: 'app-show',
@@ -13,11 +13,11 @@ import { BooksList } from '../../../data/BookList';
 export class ShowComponent {
   author!: Books | undefined;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private BookService:BookService) {}
 
   ngOnInit(): void {
     const authorId = Number(this.route.snapshot.paramMap.get('id'));
-    this.author = BooksList.find((book) => book.id === authorId);
+    this.author =this.BookService.getBookById(authorId)
   }
 
   isArray(value: any): boolean {
